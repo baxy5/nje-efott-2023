@@ -9,6 +9,7 @@ import Next from "../../components/Next";
 import Win from "../../components/Win";
 import Helpers from "../../components/Helpers";
 import End from "../../components/End";
+import Image from "next/image";
 
 export default function Home() {
   const [isStart, setIsStart] = useState(false);
@@ -232,14 +233,17 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/beer.png" />
       </Head>
-      {/* pt-[550px] */}
       <main className="cursor-default">
-        <div className="text-white text-[40px] flex justify-center gap-10">
-          <p>HÖK LOGO</p>
-          <p>KÖNTÖS LOGO</p>
+        <div className="text-white text-[40px] flex justify-center items-center gap-10">
+          <div>
+            <Image src="/hoklogo.png" width={200} height={200} alt="" />
+          </div>
+          <div>
+            <Image src="/kontoslogo.svg" width={200} height={200} alt="" />
+          </div>
         </div>
         {/* IDE LEHET KELL NEGATIV MARGIN */}
-        <div className="">
+        <div className="-mt-44">
           <div className="flex justify-between">
             <Prizes prizes={prizes} prizeIndex={prizeIndex} />
             <Helpers
