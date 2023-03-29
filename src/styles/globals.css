@@ -5,12 +5,13 @@
 body {
   height: 100vh;
   width: 100%;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   background: rgb(19, 53, 37);
-  background: linear-gradient(
+  /* background: linear-gradient(
     142deg,
     rgba(19, 53, 37, 1) 50%,
     rgba(207, 178, 57, 1) 100%
-  );
+  ); */
 }
 
 .lost-background {
