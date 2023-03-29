@@ -8,6 +8,7 @@ import Prizes from "../../components/Prizes";
 import Next from "../../components/Next";
 import Win from "../../components/Win";
 import Helpers from "../../components/Helpers";
+import End from "../../components/End";
 
 export default function Home() {
   const [isStart, setIsStart] = useState(false);
@@ -21,88 +22,38 @@ export default function Home() {
   const [isTele, setIsTele] = useState(false);
   const [isHalving, setIsHalving] = useState(false);
   const [isHalvingBackg, setHalvingBackg] = useState(false);
-
-  /* const questions = [
-    {
-      question: "Gálnak mi volt a kedvenc étele középsuliba?",
-      answers: ["A: Szotyi", "B: Pogacsa", "C: Chivas", "D: Bolognais taska"],
-      rightAnswerIndex: 4,
-      // rightAnswerIndex - 1 = can't be in the "halving"
-      halving: [1, 2],
-    },
-    {
-      question: "Atinak milyen szinu az Iqosa?",
-      answers: ["A: Arany", "B: Arany fehér", "C: Fehér", "D: Szürke"],
-      rightAnswerIndex: 2,
-      halving: [0, 2],
-    },
-    {
-      question: "Saba hány pontott szerzett a legelso fizika zh-n?",
-      answers: ["A: 14", "B: 0", "C: 7", "D: 30"],
-      rightAnswerIndex: 2,
-      halving: [3, 4],
-    },
-    {
-      question: "Janinak mi a peak rangja Valoba?",
-      answers: ["A: Plastic", "B: Plat 3", "C: Dia 1", "D: Dia 2"],
-      rightAnswerIndex: 3,
-      halving: [1, 3],
-    },
-    {
-      question: "Ki nyerte a golya tabort?",
-      answers: ["A: Sarga", "B: Kék", "C: Piros", "D: Rozsaszin"],
-      rightAnswerIndex: 2,
-      halving: [0, 3],
-    },
-    {
-      question: "1+1=?",
-      answers: ["A: 2", "B: 2222", "C: 222", "D: 22"],
-      rightAnswerIndex: 1,
-      halving: [3, 2],
-    },
-    {
-      question: "A rityroty hova jár bulizni?",
-      answers: [
-        "A: Törtelxd",
-        "B: Kiskunmajsa",
-        "C: Lakitelek",
-        "D: Katonatelep ahol nincs optikai",
-      ],
-      rightAnswerIndex: 3,
-      halving: [1, 0],
-    },
-  ]; */
+  const [teamQuestionsCounter, setTeamQuestionsCounter] = useState(1);
 
   const questions = [
     {
       1: {
-        question: "Gálnak mi volt a kedvenc étele középsuliba?",
-        answers: ["A: Szotyi", "B: Pogacsa", "C: Chivas", "D: Bolognais taska"],
+        question: "Kecskemét melyik megyében van?",
+        answers: ["A: Pest", "B: Heves", "C: Kecske", "D: Bács"],
         rightAnswerIndex: 4,
         // rightAnswerIndex - 1 = can't be in the "halving"
         halving: [1, 2],
       },
       2: {
-        question: "Atinak milyen szinu az Iqosa?",
-        answers: ["A: Arany", "B: Arany fehér", "C: Fehér", "D: Szürke"],
+        question: "A fötér hol van?",
+        answers: ["A: Cegléd", "B: Főtéren", "C: Törtel", "D: Lakitelek"],
         rightAnswerIndex: 2,
         halving: [0, 2],
       },
       3: {
-        question: "Saba hány pontott szerzett a legelso fizika zh-n?",
-        answers: ["A: 14", "B: 0", "C: 7", "D: 30"],
+        question: "2+2?",
+        answers: ["A: 1", "B: 4", "C: 7", "D: 30"],
         rightAnswerIndex: 2,
         halving: [3, 0],
       },
       4: {
-        question: "Janinak mi a peak rangja Valoba?",
-        answers: ["A: Plastic", "B: Plat 3", "C: Dia 1", "D: Dia 2"],
+        question: "Egy hét hány napbol áll?",
+        answers: ["A: 2", "B: 3", "C: 7", "D: 1"],
         rightAnswerIndex: 3,
         halving: [1, 3],
       },
       5: {
-        question: "Ki nyerte a golya tabort?",
-        answers: ["A: Sarga", "B: Kék", "C: Piros", "D: Rozsaszin"],
+        question: "Melyik NEM Ázsiában található?",
+        answers: ["A: Kina", "B: Magyaro.", "C: Japán", "D: Korea"],
         rightAnswerIndex: 2,
         halving: [0, 3],
       },
@@ -113,12 +64,12 @@ export default function Home() {
         halving: [3, 2],
       },
       7: {
-        question: "A rityroty hova jár bulizni?",
+        question: "Ki volt Neumann?",
         answers: [
-          "A: Törtelxd",
-          "B: Kiskunmajsa",
-          "C: Lakitelek",
-          "D: Katonatelep ahol nincs optikai",
+          "A: Büfés",
+          "B: Közmunkás",
+          "C: Informatikus-matematikus",
+          "D: Iró",
         ],
         rightAnswerIndex: 3,
         halving: [1, 0],
@@ -126,14 +77,54 @@ export default function Home() {
     },
     {
       1: {
-        question: "Attila hany centi?",
-        answers: ["A: 5", "B: 180", "C: 200", "D: Gimli"],
+        question: "Melyik igaz Neumannra?",
+        answers: [
+          "A: Büfés volt a GTK-n",
+          "B: Büfés a Gamfon",
+          "C: Ö volt a polgi",
+          "D: Matematikus informatikus volt",
+        ],
         rightAnswerIndex: 4,
         halving: [1, 0],
       },
       2: {
         question: "Elon Musknak melyik NEM a vállalkozása?",
         answers: ["A: Spacex", "B: Tesla", "C: Twitter", "D: Törteli CBA"],
+        rightAnswerIndex: 4,
+        halving: [1, 0],
+      },
+      3: {
+        question: "Elon Musknak melyik a vállalkozása?",
+        answers: ["A: Beszélö köntös", "B: Tesco", "C: Penny", "D: Tesla"],
+        rightAnswerIndex: 4,
+        halving: [1, 0],
+      },
+      4: {
+        question: "3+3?",
+        answers: ["A: 1", "B: 2", "C: 3", "D: 6"],
+        rightAnswerIndex: 4,
+        halving: [1, 0],
+      },
+      5: {
+        question: "Mi volt Neumann keresztneve?",
+        answers: ["A: Gusztáv", "B: Gyuri", "C: Sándor", "D: János"],
+        rightAnswerIndex: 4,
+        halving: [1, 0],
+      },
+      6: {
+        question: "NJE röviditése Neumann János Egyetem?",
+        answers: ["A: Nem", "B: Nem", "C: Nem", "D: Igen"],
+        rightAnswerIndex: 4,
+        halving: [1, 0],
+      },
+      7: {
+        question: "Kinek a nevéröl szol az egyetem?",
+        answers: [
+          "A: Kiszel Tünde",
+          "B: Elon Musk",
+          "C: Bakos János",
+          "D: Neumann János",
+        ],
         rightAnswerIndex: 4,
         halving: [1, 0],
       },
@@ -204,7 +195,10 @@ export default function Home() {
 
   // Next team handler
   function restartNext() {
-    setCurrentTeamIndex((prev) => prev + 1);
+    setTeamQuestionsCounter((prev) => prev + 1);
+    if (questions.length !== teamQuestionsCounter) {
+      setCurrentTeamIndex((prev) => prev + 1);
+    }
     setCurrentQuestionIndex(1);
     setElapsedTime(0);
     setEnd(false);
@@ -224,6 +218,11 @@ export default function Home() {
       delete currentQuestion.answers[currentQuestion.halving[1]];
     }
   }
+
+  useEffect(() => {
+    console.log(questions.length);
+    console.log(teamQuestionsCounter);
+  }, [teamQuestionsCounter]);
 
   return (
     <>
@@ -273,6 +272,7 @@ export default function Home() {
                 restartNext={restartNext}
               />
             )}
+            {questions.length + 1 === teamQuestionsCounter && <End />}
             <div className="flex justify-center items-center text-white">
               <p className="text-[72px]">{60 - elapsedTime}</p>
             </div>
