@@ -243,7 +243,7 @@ export default function Home() {
           </div>
         </div>
         {/* IDE LEHET KELL NEGATIV MARGIN */}
-        <div className="-mt-44">
+        <div className="-mt-64">
           <div className="flex justify-between">
             <Prizes prizes={prizes} prizeIndex={prizeIndex} />
             <Helpers
