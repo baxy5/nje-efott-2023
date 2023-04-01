@@ -22,7 +22,7 @@ const Answer = ({ a, i, rightAnswerIndex, handleAnswer }) => {
         setTimeout(() => {
           setIsCliked(false);
           setIsRight(false);
-        }, 5000);
+        }, 7000);
       }}
     >
       <p className="text-3xl">{a}</p>

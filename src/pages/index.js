@@ -11,6 +11,11 @@ import Helpers from "../../components/Helpers";
 import End from "../../components/End";
 import Image from "next/image";
 
+import WinSound from "../../audio/win.mp3";
+import LoseSound from "../../audio/lose.mp3";
+import Megjelolo from "../../audio/megjelolo.mp3";
+import Suspense from "../../audio/suspense.mp3";
+
 export default function Home() {
   const [isStart, setIsStart] = useState(false);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
@@ -24,6 +29,19 @@ export default function Home() {
   const [isHalving, setIsHalving] = useState(false);
   const [isHalvingBackg, setHalvingBackg] = useState(false);
   const [teamQuestionsCounter, setTeamQuestionsCounter] = useState(1);
+
+  const [winSound, setWinSound] = useState(null);
+  const [loseSound, setLoseSound] = useState(null);
+  const [flagSound, setFlagSound] = useState(null);
+  const [suspenseSound, setSuspenseSound] = useState(null);
+
+  // SOUND OBJECT DEFINING
+  useEffect(() => {
+    setWinSound(new Audio(WinSound));
+    setLoseSound(new Audio(LoseSound));
+    setFlagSound(new Audio(Megjelolo));
+    setSuspenseSound(new Audio(Suspense));
+  }, []);
 
   const questions = [
     {
@@ -147,6 +165,8 @@ export default function Home() {
       setElapsedTime(0);
       setEnd(true);
       setPrizeIndex(0);
+      loseSound.load();
+      loseSound.play();
     }
   }, [elapsedTime]);
 
@@ -171,17 +191,40 @@ export default function Home() {
     };
   }, [elapsedTime, isStart]);
 
+  // LAST MINUTES SOUND (10mp)
+  useEffect(() => {
+    if (elapsedTime === 50) {
+      suspenseSound.load();
+      suspenseSound.play();
+      setTimeout(() => {
+        suspenseSound.pause();
+      }, 10000);
+    }
+  }, [elapsedTime]);
+
   // Answer handler
   function handleAnswer(index) {
     if (currentQuestion.rightAnswerIndex === index + 1) {
       setTimeout(() => {
+        winSound.load();
+        winSound.play();
+      }, 3000);
+      setTimeout(() => {
         setDisplayFlag(true);
         setPrizeIndex((prev) => prev + 1);
-      }, 5000);
+        winSound.pause();
+        flagSound.load();
+        flagSound.play();
+        setTimeout(() => {
+          flagSound.pause();
+        }, 4000);
+      }, 7000);
     } else {
       setTimeout(() => {
         setEnd(true);
         setPrizeIndex(0);
+        loseSound.load();
+        loseSound.play();
       }, 5000);
     }
   }
@@ -219,11 +262,6 @@ export default function Home() {
       delete currentQuestion.answers[currentQuestion.halving[1]];
     }
   }
-
-  useEffect(() => {
-    console.log(questions.length);
-    console.log(teamQuestionsCounter);
-  }, [teamQuestionsCounter]);
 
   return (
     <>
