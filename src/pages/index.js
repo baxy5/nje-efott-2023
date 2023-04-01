@@ -1,7 +1,7 @@
+import { useState, useEffect } from "react";
 import Answer from "../../components/Answer";
 import Questions from "../../components/Question";
 import Head from "next/head";
-import { useState, useEffect } from "react";
 import Lost from "../../components/Lost";
 import Start from "../../components/Start";
 import Prizes from "../../components/Prizes";
@@ -29,6 +29,7 @@ export default function Home() {
   const [isHalving, setIsHalving] = useState(false);
   const [isHalvingBackg, setHalvingBackg] = useState(false);
   const [teamQuestionsCounter, setTeamQuestionsCounter] = useState(1);
+  const [isAnswerClicked, setIsAnswerClicked] = useState(false);
 
   const [winSound, setWinSound] = useState(null);
   const [loseSound, setLoseSound] = useState(null);
@@ -178,10 +179,10 @@ export default function Home() {
     let timerId = 0;
     if (isStart) {
       timerId = setInterval(() => {
-        if (elapsedTime == 60) {
-          setElapsedTime(1);
-        } else {
+        if (elapsedTime !== 60 && !isAnswerClicked) {
           setElapsedTime((prevTime) => prevTime + 1);
+        } else {
+          setElapsedTime(elapsedTime);
         }
       }, 1000);
     }
@@ -189,7 +190,7 @@ export default function Home() {
     return () => {
       clearInterval(timerId);
     };
-  }, [elapsedTime, isStart]);
+  }, [elapsedTime, isStart, isAnswerClicked]);
 
   // START SUSPENSE SOUND HANDLER
   useEffect(() => {
@@ -204,6 +205,7 @@ export default function Home() {
 
   // Answer handler
   function handleAnswer(index) {
+    setIsAnswerClicked(true);
     if (currentQuestion.rightAnswerIndex === index + 1) {
       setTimeout(() => {
         winSound.load();
@@ -237,6 +239,7 @@ export default function Home() {
     setElapsedTime(0);
     setDisplayFlag(false);
     setIsHalving(false);
+    setIsAnswerClicked(false);
     suspenseSound.load();
     suspenseSound.play();
     setTimeout(() => {
@@ -254,6 +257,7 @@ export default function Home() {
     setElapsedTime(0);
     setEnd(false);
     setIsStart(false);
+    setIsAnswerClicked(false);
     setDisplayFlag(false);
     setIsAudience(false);
     setIsTele(false);
