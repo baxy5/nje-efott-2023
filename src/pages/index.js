@@ -191,16 +191,16 @@ export default function Home() {
     };
   }, [elapsedTime, isStart]);
 
-  // LAST MINUTES SOUND (10mp)
+  // START SUSPENSE SOUND HANDLER
   useEffect(() => {
-    if (elapsedTime === 50) {
+    if (isStart) {
       suspenseSound.load();
       suspenseSound.play();
       setTimeout(() => {
         suspenseSound.pause();
-      }, 10000);
+      }, 60000);
     }
-  }, [elapsedTime]);
+  }, [isStart]);
 
   // Answer handler
   function handleAnswer(index) {
@@ -208,6 +208,7 @@ export default function Home() {
       setTimeout(() => {
         winSound.load();
         winSound.play();
+        suspenseSound.pause();
       }, 3000);
       setTimeout(() => {
         setDisplayFlag(true);
@@ -223,6 +224,7 @@ export default function Home() {
       setTimeout(() => {
         setEnd(true);
         setPrizeIndex(0);
+        suspenseSound.pause();
         loseSound.load();
         loseSound.play();
       }, 5000);
@@ -235,6 +237,11 @@ export default function Home() {
     setElapsedTime(0);
     setDisplayFlag(false);
     setIsHalving(false);
+    suspenseSound.load();
+    suspenseSound.play();
+    setTimeout(() => {
+      suspenseSound.pause();
+    }, 60000);
   }
 
   // Next team handler
