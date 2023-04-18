@@ -25,6 +25,13 @@ const Helpers = ({
             Telefon
           </p>
         </div>
+
+        {isTele && (
+          <div className="border-2 border-white p-2 text-white rounded-full w-64 flex justify-center items-center cursor-pointer hover:bg-white hover:text-[#133525]">
+            TIMER
+          </div>
+        )}
+
         <div
           onClick={() => audience(true)}
           className={`border-2 border-white p-2 text-white rounded-full w-64 flex justify-center items-center cursor-pointer hover:bg-white hover:text-[#133525]

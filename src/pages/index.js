@@ -166,6 +166,7 @@ export default function Home() {
       setElapsedTime(0);
       setEnd(true);
       setPrizeIndex(0);
+      suspenseSound.pause();
       loseSound.load();
       loseSound.play();
     }
@@ -179,7 +180,7 @@ export default function Home() {
     let timerId = 0;
     if (isStart) {
       timerId = setInterval(() => {
-        if (elapsedTime !== 60 && !isAnswerClicked) {
+        if (elapsedTime !== 60 && (!isAnswerClicked && !isTele)) {
           setElapsedTime((prevTime) => prevTime + 1);
         } else {
           setElapsedTime(elapsedTime);
@@ -190,7 +191,7 @@ export default function Home() {
     return () => {
       clearInterval(timerId);
     };
-  }, [elapsedTime, isStart, isAnswerClicked]);
+  }, [elapsedTime, isStart, isAnswerClicked, isTele]);
 
   // START SUSPENSE SOUND HANDLER
   useEffect(() => {
@@ -242,9 +243,6 @@ export default function Home() {
     setIsAnswerClicked(false);
     suspenseSound.load();
     suspenseSound.play();
-    setTimeout(() => {
-      suspenseSound.pause();
-    }, 60000);
   }
 
   // Next team handler
