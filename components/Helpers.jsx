@@ -9,6 +9,8 @@ const Helpers = ({
   setHalving,
   setHalvingBackg,
   isHalvingBackg,
+  setIsPhoneStart,
+  elapsedTimePhone,
 }) => {
   return (
     <div className="pt-10 pr-10">
@@ -27,8 +29,11 @@ const Helpers = ({
         </div>
 
         {isTele && (
-          <div className="border-2 border-white p-2 text-white rounded-full w-64 flex justify-center items-center cursor-pointer hover:bg-white hover:text-[#133525]">
-            TIMER
+          <div
+            onClick={() => setIsPhoneStart(true)}
+            className="border-2 border-white p-2 text-white rounded-full w-64 flex justify-center items-center cursor-pointer hover:bg-white hover:text-[#133525]"
+          >
+            <span className="text-3xl flex items-center gap-2">{30 - elapsedTimePhone}</span>
           </div>
         )}
 

@@ -30,6 +30,8 @@ export default function Home() {
   const [isHalvingBackg, setHalvingBackg] = useState(false);
   const [teamQuestionsCounter, setTeamQuestionsCounter] = useState(1);
   const [isAnswerClicked, setIsAnswerClicked] = useState(false);
+  const [elapsedTimePhone, setElapsedTimePhone] = useState(0);
+  const [isPhoneStart, setIsPhoneStart] = useState(false)
 
   const [winSound, setWinSound] = useState(null);
   const [loseSound, setLoseSound] = useState(null);
@@ -193,6 +195,24 @@ export default function Home() {
     };
   }, [elapsedTime, isStart, isAnswerClicked, isTele]);
 
+  //COUNTER 30s -- Phone help
+  useEffect(() => {
+    let timerId = 0;
+    if (isPhoneStart) {
+      timerId = setInterval(() => {
+        if (elapsedTimePhone !== 30) {
+          setElapsedTimePhone((prevTime) => prevTime + 1);
+        } else {
+          setElapsedTimePhone(elapsedTimePhone);
+        }
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(timerId);
+    };
+  }, [elapsedTimePhone,isPhoneStart]);
+
   // START SUSPENSE SOUND HANDLER
   useEffect(() => {
     if (isStart) {
@@ -262,6 +282,8 @@ export default function Home() {
     setIsHalving(false);
     setHalvingBackg(false);
     setPrizeIndex(0);
+    setElapsedTimePhone(0)
+    setIsPhoneStart(false)
   }
 
   // HALVING HANDLER
@@ -303,6 +325,8 @@ export default function Home() {
               setHalving={setIsHalving}
               setHalvingBackg={setHalvingBackg}
               isHalvingBackg={isHalvingBackg}
+              setIsPhoneStart={setIsPhoneStart}
+              elapsedTimePhone={elapsedTimePhone}
             />
           </div>
           <div className="grid justify-center">
