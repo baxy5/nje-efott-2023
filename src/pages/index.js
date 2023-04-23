@@ -145,7 +145,7 @@ export default function Home() {
         halving: [1, 0],
       },
       6: {
-        question: "Mi volt Neumann-hatás?",
+        question: "Mi volt a Neumann-hatás?",
         answers: ["A: A kvantumtúlélés jelensége", "B: A szinkronizáció jelensége", "C: Az egységes tudatosság jelensége", "D: Az árnyékeffektus jelensége"],
         rightAnswerIndex: 2,
         halving: [3, 0],
@@ -1311,7 +1311,7 @@ export default function Home() {
           "A: Atlanti-óceán",
           "B: Indiai-óceán",
           "C: Csendes-óceán",
-          "D: Északi-sarki-óceán",
+          "D: Északi-tenger",
         ],
         rightAnswerIndex: 4,
         halving: [2, 1],
