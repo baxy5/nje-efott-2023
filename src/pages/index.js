@@ -166,7 +166,7 @@ export default function Home() {
       1: {
         question: "Melyik híres személyiség született Kecskeméten?",
         answers: [
-          "A: Neumann János",
+          "A: Kodály Zoltán",
           "B: Petőfi Sándor",
           "C: Jókai Mór",
           "D: Bálint György",
@@ -309,7 +309,7 @@ export default function Home() {
           "D: Egyik sem",
         ],
         rightAnswerIndex: 3,
-        halving: [0, 1],
+        halving: [0, 3],
       },
       7: {
         question: "Mikor alapították az egyetemet?",
@@ -1306,15 +1306,15 @@ export default function Home() {
         halving: [2, 1],
       },
       4: {
-        question: "Mi a világ legnagyobb óceánja?",
+        question: "Mi a világ legkisebb óceánja?",
         answers: [
           "A: Atlanti-óceán",
           "B: Indiai-óceán",
           "C: Csendes-óceán",
           "D: Északi-sarki-óceán",
         ],
-        rightAnswerIndex: 3,
-        halving: [3, 1],
+        rightAnswerIndex: 4,
+        halving: [2, 1],
       },
       5: {
         question: "Melyik város Európa legnagyobb városa?",
