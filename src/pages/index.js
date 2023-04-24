@@ -32,6 +32,7 @@ export default function Home() {
   const [isAnswerClicked, setIsAnswerClicked] = useState(false);
   const [elapsedTimePhone, setElapsedTimePhone] = useState(0);
   const [isPhoneStart, setIsPhoneStart] = useState(false);
+  const [teleDesign, setTeleDesign] = useState(false);
 
   const [winSound, setWinSound] = useState(null);
   const [loseSound, setLoseSound] = useState(null);
@@ -1120,7 +1121,7 @@ export default function Home() {
           "A: Atlanti-óceán",
           "B: Indiai-óceán",
           "C: Csendes-óceán",
-          "D: Északi-sarki-óceán",
+          "D: Északi-tenger",
         ],
         rightAnswerIndex: 3,
         halving: [1, 3],
@@ -1313,8 +1314,8 @@ export default function Home() {
           "C: Csendes-óceán",
           "D: Északi-tenger",
         ],
-        rightAnswerIndex: 4,
-        halving: [2, 1],
+        rightAnswerIndex: 2,
+        halving: [2, 3],
       },
       5: {
         question: "Melyik város Európa legnagyobb városa?",
@@ -1586,6 +1587,85 @@ export default function Home() {
         rightAnswerIndex: 2,
         halving: [3, 2],
       },
+    },
+    {
+      1: {
+        question: "Mikor volt a honfoglalás?",
+        answers: [
+          "A: 896",
+          "B: 895",
+          "C: 1022",
+          "D: 1014",
+        ],
+        rightAnswerIndex: 2,
+        halving: [3, 2],
+      },
+      2: {
+        question: "Melyik állam a híres Hollywood filmipar központja?",
+        answers: [
+          "A: Kalifornia",
+          "B: Texas",
+          "C: New York",
+          "D: Nevada",
+        ],
+        rightAnswerIndex: 1,
+        halving: [3, 2],
+      },
+      3: {
+        question: "Melyik állam ad otthont a Niagara-vízesésnek?",
+        answers: [
+          "A: Virginia",
+          "B: Michigan",
+          "C: New York",
+          "D: Illinois",
+        ],
+        rightAnswerIndex: 3,
+        halving: [3, 1],
+      },
+      4: {
+        question: "Hol található a HÖK iroda?",
+        answers: [
+          "A: Főépület földszint",
+          "B: 10-es épület",
+          "C: Campus 1. emelet",
+          "D: 3-as épület 1. emelet",
+        ],
+        rightAnswerIndex: 2,
+        halving: [3, 2],
+      },
+      5: {
+        question: "Mikor volt a legutóbbi KEN?",
+        answers: [
+          "A: 2020",
+          "B: 2021",
+          "C: 2019",
+          "D: 2018",
+        ],
+        rightAnswerIndex: 3,
+        halving: [3, 1],
+      },
+      6: {
+        question: "Melyik országban található az Ayers Rock?",
+        answers: [
+          "A: Ausztrália",
+          "B: Új-Zéland",
+          "C: Dél-Afrika",
+          "D: Egyesült Államok",
+        ],
+        rightAnswerIndex: 1,
+        halving: [3, 1],
+      },
+      7: {
+        question: "Melyik koktél alapja a vodka, a paradicsomlé és a Worcestershire-szósz?",
+        answers: [
+          "A: Margarita",
+          "B: Bloody Mary",
+          "C: Mojito",
+          "D: Pina Colada",
+        ],
+        rightAnswerIndex: 2,
+        halving: [3, 2],
+      },
     }
   ];
   const prizes = [
@@ -1694,6 +1774,7 @@ export default function Home() {
   function nextQuestion() {
     setCurrentQuestionIndex((prev) => prev + 1);
     setElapsedTime(0);
+    setIsTele(false);
     setDisplayFlag(false);
     setIsHalving(false);
     setIsAnswerClicked(false);
@@ -1720,6 +1801,7 @@ export default function Home() {
     setPrizeIndex(0);
     setElapsedTimePhone(0);
     setIsPhoneStart(false);
+    setTeleDesign(false);
   }
 
   // HALVING HANDLER
@@ -1763,6 +1845,8 @@ export default function Home() {
               isHalvingBackg={isHalvingBackg}
               setIsPhoneStart={setIsPhoneStart}
               elapsedTimePhone={elapsedTimePhone}
+              setTeleDesign={setTeleDesign}
+              teleDesign = {teleDesign}
             />
           </div>
           <div className="grid justify-center">

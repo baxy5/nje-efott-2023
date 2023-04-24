@@ -11,14 +11,19 @@ const Helpers = ({
   isHalvingBackg,
   setIsPhoneStart,
   elapsedTimePhone,
+  setTeleDesign,
+  teleDesign
 }) => {
   return (
     <div className="pt-10 pr-10">
       <div className="grid gap-3">
         <div
-          onClick={() => tele(true)}
+          onClick={() => {
+            tele(true)
+            setTeleDesign(true)
+          }}
           className={`border-2 border-white p-2 text-white rounded-full w-64 flex justify-center items-center cursor-pointer hover:bg-white hover:text-[#133525]
-          ${isTele ? "bg-red-500 line-through" : ""}`}
+          ${teleDesign ? "bg-red-500 line-through" : ""}`}
         >
           <p className="text-3xl flex items-center gap-2">
             <span>
