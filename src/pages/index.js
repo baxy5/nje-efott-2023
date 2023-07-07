@@ -29,15 +29,19 @@ export default function Home() {
   const [isPhoneStart, setIsPhoneStart] = useState(false);
   const [teleDesign, setTeleDesign] = useState(false);
 
+  // Mi az EFOTT pontos helyszine?
+  // Mettől meddig tart az EFOTT? jul 12 16
+  // Melyik városban található az NJE?
+
   const questions = [
     {
       1: {
-        question: "Mi a DJB jelentése?",
+        question: "Hol rendezik meg az EFOTT-ot?",
         answers: [
-          "A: Diákjó Bizottság",
-          "B: Demokratikus Jogalapú Barátság",
-          "C: Diák Járulék Bizottság",
-          "D: Diákjóléti Bizottság",
+          "A: Szelidi-tó",
+          "B: Balaton",
+          "C: Tisza-tó",
+          "D: Velencei-tó",
         ],
         rightAnswerIndex: 4,
         // rightAnswerIndex - 1 = can't be in the "halving"
@@ -45,19 +49,19 @@ export default function Home() {
       },
       2: {
         question:
-          "Meddig érvényes az őszi félévben kapott diákigazolvány matrica?",
+          "Mettől meddig tart az EFOTT?",
         answers: [
-          "A: Március 31.",
-          "B: Január 31.",
-          "C: Február 31.",
-          "D: Április 31.",
+          "A: Július 12. - 16.",
+          "B: Július 10. - 14.",
+          "C: Július 13. - 15.",
+          "D: Július 12. - 20.",
         ],
         rightAnswerIndex: 1,
         halving: [1, 2],
       },
       3: {
-        question: "Neumann János melyik évben született?",
-        answers: ["A: 1905", "B: 1915", "C: 1925", "D: 1935"],
+        question: "Melyik városban található az Neumann János Egyetem?",
+        answers: ["A: Kecskemét", "B: Budapest", "C: Eger", "D: Debrecen"],
         rightAnswerIndex: 1,
         halving: [1, 2],
       },
@@ -74,19 +78,19 @@ export default function Home() {
         halving: [0, 3],
       },
       6: {
-        question: "Miből készül a fény?",
+        question: "Több mint hány éve az EFOTT az egyetemisták builja?",
         answers: [
-          "A: vodka co2-vel",
-          "B: 2 coulomb töltés",
-          "C: vodka, citromlé",
-          "D: vodka, málnaszörp",
+          "A: több mint 45",
+          "B: több mind 40",
+          "C: több mint 35",
+          "D: több mint 25",
         ],
         rightAnswerIndex: 1,
         halving: [3, 2],
       },
       7: {
-        question: "Hány neve volt már az egyetemnek a jelenlegivel együtt?",
-        answers: ["A: 3", "B: 6", "C: 2", "D: 5"],
+        question: "Háziállatot lehet hozni az EFOTT-ra?",
+        answers: ["A: Igen", "B: Igen, de csak fél óráig", "C: Igen, ha bárki simogathatja", "D: Nem"],
         rightAnswerIndex: 4,
         halving: [1, 0],
       },
@@ -94,13 +98,13 @@ export default function Home() {
   ];
 
   const prizes = [
-    "2 shot",
-    "4 pohár sör",
+    "2 sör",
+    "2 sör + 1 shot",
     "4 shot",
-    "2 shot",
-    "4 hosszúlépés",
-    "8 shot",
-    "12 shot",
+    "2 sör + 2 shot",
+    "5 sör",
+    "8 sör",
+    "12 sör",
   ];
 
   // LEJÁR AZ IDO HANDLER
@@ -223,24 +227,6 @@ export default function Home() {
         </div>
         {/* IDE LEHET KELL NEGATIV MARGIN */}
         <div className="">
-          {/* <div className="flex justify-between">
-            <Prizes prizes={prizes} prizeIndex={prizeIndex} />
-            <Helpers
-              halving={halving()}
-              audience={setIsAudience}
-              isAudience={isAudience}
-              tele={setIsTele}
-              isTele={isTele}
-              isHalving={isHalving}
-              setHalving={setIsHalving}
-              setHalvingBackg={setHalvingBackg}
-              isHalvingBackg={isHalvingBackg}
-              setIsPhoneStart={setIsPhoneStart}
-              elapsedTimePhone={elapsedTimePhone}
-              setTeleDesign={setTeleDesign}
-              teleDesign={teleDesign}
-            />
-          </div> */}
           <div className="grid justify-center">
             {isEnd && <Lost restartHandler={restartNext} />}
             {!isStart && <Start startHandler={setIsStart} isStart={isStart} />}
@@ -252,19 +238,18 @@ export default function Home() {
                 restartNext={restartNext}
               />
             )}
-            {/* {prizes.length === prizeIndex && (
+            {prizes.length === prizeIndex && (
               <Win
                 prizes={prizes}
                 prizeIndex={prizeIndex}
                 restartNext={restartNext}
               />
-            )} */}
-           {/*  {questions.length + 1 === teamQuestionsCounter && <End />} */}
+            )}
             <div className="flex justify-center items-center text-white">
               <p className="text-[72px]">{60 - elapsedTime}</p>
             </div>
             <Questions q={currentQuestion.question} />
-            <div className="grid grid-cols-1 gap-5">
+            <div className="grid grid-cols-1 gap-5 px-2">
               {currentQuestion.answers.map((answer, index) => {
                 return (
                   <Answer
